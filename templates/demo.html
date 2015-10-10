@@ -5,7 +5,7 @@
     </head>
     <body>
         {% if token %}
-        <h1> Congratulations! you have successfully authenticated and your token is: {{ token }} </h1>
+        <h1> UTour Congratulations! you have successfully authenticated and your token is: {{ token }} </h1>
         {% else %}
         <h1> Something went wrong :( </h1>
         {% endif %}
@@ -16,5 +16,6 @@
         <button type="button" onclick="action('price')">PRICE ESTIMATES!</button>
         <button type="button" onclick="action('history')">HISTORY!</button>
         <button type="button" onclick="action('me')">ME!</button>
+        <button type="button" onclick="action('request_tour')">Request a Tour</button>
     </body>
 </html>

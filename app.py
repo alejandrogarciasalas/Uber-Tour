@@ -218,6 +218,15 @@ def me():
         data=response.text,
     )
 
+@app.route('/request_tour', methods=['GET'])
+def request_tour():
+    print("Tour requested.")
+    return render_template(
+        'tour.html',
+        # endpoint='me',
+        # data=response.text,
+    )
+
 
 def get_redirect_uri(request):
     """Return OAuth redirect URI."""
