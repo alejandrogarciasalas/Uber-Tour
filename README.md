@@ -1,4 +1,4 @@
-Example Uber app for developers
+YUTour (a Yelp & Uber Tour)
 ==============================
 
 [![TravisCI](https://travis-ci.org/uber/Python-Sample-Application.svg?branch=master)](https://travis-ci.org/uber/Python-Sample-Application)
