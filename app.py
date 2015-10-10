@@ -99,13 +99,14 @@ def demo():
         headers=generate_ride_headers(session.get('access_token')),
     )
 
-    # if response.status_code != 200:
-        # return 'There was an error', response.status_code
+
+    
+    if response.status_code != 200:
+        return 'There was an error', response.status_code
     return render_template(
         'demo.html',
         endpoint='me',
-        data=json.loads(response.text)["picture"],
-        # username= dat
+        user_info = json.loads(response.text)
     )
 
 

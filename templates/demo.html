@@ -1,21 +1,33 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <title>YUTour</title>
         <script src="util.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/superhero/bootstrap.min.css">
     </head>
     <body>
-        {% if username %}
-        <h1> Welcome to YUTour, {{ data.first_name }}! </h1>
-        {% else %}
-        <h1> Something went wrong :( </h1>
-        {% endif %}
-        {{data}}
-        <h2> Test the following functions of the api! </h2>
-        <button type="button" onclick="action('products')">PRODUCTS!</button>
+        <div class="bs-component">
+              <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span>{{user_info['first_name']}}</span>
+                      <span class="glyphicon glyphicon-user"></span>
+                      <!-- <img src={{user_info["picture"]}}> -->
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                  </div>
+                </div>
+              </nav>
+        </div>  
+<!--         <button type="button" onclick="action('products')">PRODUCTS!</button>
         <button type="button" onclick="action('time')">TIME ESTIMATES!</button>
         <button type="button" onclick="action('price')">PRICE ESTIMATES!</button>
         <button type="button" onclick="action('history')">HISTORY!</button>
-        <button type="button" onclick="action('me')">ME!</button>
-        <button type="button" onclick="action('request_tour')">Request a Tour</button>
+        <button type="button" onclick="action('me')">ME!</button> -->
+        <button class="btn btn-success" type="button" onclick="action('request_tour')">Request a Tour</button>
     </body>
 </html>
