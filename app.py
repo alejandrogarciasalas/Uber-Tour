@@ -90,8 +90,24 @@ def submit():
 
 @app.route('/demo', methods=['GET'])
 def demo():
-    """Demo.html is a template that calls the other routes in this example."""
-    return render_template('demo.html', token=session.get('access_token'))
+    # """Demo.html is a template that calls the other routes in this example."""
+    # return render_template('demo.html', token=session.get('access_token'))
+
+    url = config.get('base_uber_url') + 'me'
+    response = app.requests_session.get(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+    )
+
+    # if response.status_code != 200:
+        # return 'There was an error', response.status_code
+    return render_template(
+        'demo.html',
+        endpoint='me',
+        data=json.loads(response.text)["picture"],
+        # username= dat
+    )
+
 
 
 @app.route('/products', methods=['GET'])

@@ -4,12 +4,12 @@
         <script src="util.js"></script>
     </head>
     <body>
-        {% if token %}
-        <h1> UTour Congratulations! you have successfully authenticated and your token is: {{ token }} </h1>
+        {% if username %}
+        <h1> Welcome to YUTour, {{ data.first_name }}! </h1>
         {% else %}
         <h1> Something went wrong :( </h1>
         {% endif %}
-
+        {{data}}
         <h2> Test the following functions of the api! </h2>
         <button type="button" onclick="action('products')">PRODUCTS!</button>
         <button type="button" onclick="action('time')">TIME ESTIMATES!</button>
