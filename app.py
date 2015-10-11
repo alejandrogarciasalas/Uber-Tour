@@ -257,7 +257,6 @@ def request_tour():
     )
 ######## HAVE TO CALCULATE THE LATITUDE AND LONGITUDE ON A SYSTEM LEVEL !!!!!!!!!!!!!!
 def get_cheapest_product(latitude, longitude):
-    me():
     """Returns the cheapest product ouf of available products for a latitude and longitude."""
     url = config.get('base_uber_url') + 'products'
     params = {
