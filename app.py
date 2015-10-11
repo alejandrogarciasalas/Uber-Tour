@@ -234,15 +234,6 @@ def me():
         data=response.text,
     )
 
-# @app.route('/request_tour', methods=['GET'])
-# def request_tour():
-#     print("Tour requested.")
-#     return render_template(
-#         'tour.html',
-#         # endpoint='me',
-#         # data=response.text,
-#     )
-
 class RequestForm(Form):
     initial_location = TextField('Initial Location', [validators.Length(min=1, max=25)])
     final_location = TextField('Final Location', [validators.Length(min=1, max=25)])
@@ -255,16 +246,62 @@ def register():
     form = RequestForm(request.form)
     print request.form
     if request.method == 'POST' and form.validate():
-        initial_location = form.initial_location.data
-        final_location = form.final_location.data
-        cost = form.cost.data
-        time = form.time.data
         return render_template('test.html', form=request.form)
     return render_template('test.html', form=request.form)
 
-# @app.route('/test', methods=['GET'])
-# def test():
-#     return render_template('test.html')
+@app.route('/request_tour', methods=['GET'])
+def request_tour():
+    print("Tour requested.")
+    return render_template(
+        'tour.html'
+    )
+######## HAVE TO CALCULATE THE LATITUDE AND LONGITUDE ON A SYSTEM LEVEL !!!!!!!!!!!!!!
+def get_cheapest_product(latitude, longitude):
+    me():
+    """Returns the cheapest product ouf of available products for a latitude and longitude."""
+    url = config.get('base_uber_url') + 'products'
+    params = {
+        'latitude': latitude,
+        'longitude': longitude,
+    }
+    response = app.requests_session.get(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        params=params,
+    )
+
+    if response.status_code != 200:
+        return 'There was an error', response.status_code
+    else:
+        data = json.loads(response.text)
+        return data.sort(key=product_min_price)[0] # cheapest ride
+
+def product_min_price(product):
+    """Returns the minimum price of the product."""
+    return product.price_details.minimum
+
+######## HAVE TO CALCULATE THE LATITUDE AND LONGITUDE ON A SYSTEM LEVEL !!!!!!!!!!!!!!
+def time_and_price_estimate(start_latitude, start_longitude, end_latitude, end_longitude):
+    """Return the total time and price estimates for an Uber trip."""
+    url = config.get('base_uber_url') + 'requests/time'
+    params = {
+        'product_id' : get_cheapest_product(latitude, longitude),
+        'start_latitude' : latitude,
+        'start_longitude' : longitude,
+        'end_latitude' : end_latitude,
+        'end_longitude' : end_longitude
+    }
+    response = app.requests_session.get(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        params=params,
+    )
+
+    if response.status_code != 200:
+        return 'There was an error', response.status_code
+    else:
+        data = json.loads(response.text)
+        return  {'time' : data.pickup_estimate + data.trip.duration_estimate, 'price': data.price}
 
 
 def get_redirect_uri(request):
