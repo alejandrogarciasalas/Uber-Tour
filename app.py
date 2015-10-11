@@ -9,6 +9,9 @@ from flask_sslify import SSLify
 from rauth import OAuth2Service
 import requests
 
+#Forms module
+from wtforms import Form, BooleanField, TextField, PasswordField, validators
+
 app = Flask(__name__, static_folder='static', static_url_path='')
 app.requests_session = requests.Session()
 app.secret_key = os.urandom(24)
@@ -235,14 +238,38 @@ def me():
         data=response.text,
     )
 
-@app.route('/request_tour', methods=['GET'])
-def request_tour():
-    print("Tour requested.")
-    return render_template(
-        'tour.html',
-        # endpoint='me',
-        # data=response.text,
-    )
+# @app.route('/request_tour', methods=['GET'])
+# def request_tour():
+#     print("Tour requested.")
+#     return render_template(
+#         'tour.html',
+#         # endpoint='me',
+#         # data=response.text,
+#     )
+
+class RequestForm(Form):
+    initial_location = TextField('Initial Location', [validators.Length(min=1, max=25)])
+    final_location = TextField('Final Location', [validators.Length(min=1, max=25)])
+    cost = TextField('Cost', [validators.Length(min=1, max=25)])
+    time = TextField('Time', [validators.Length(min=1, max=25)])
+
+
+@app.route('/request_tour', methods=['GET', 'POST'])
+def register():
+    form = RequestForm(request.form)
+    if request.method == 'POST' and form.validate():
+        request.form['']
+        initial_location = form.initial_location.data
+        final_location = form.final_location.data
+        cost = form.cost.data
+        time = form.time.data
+        flash('Thanks for requesting a tour')
+        return redirect(url_for('test'))
+    return render_template('test.html', form=form)
+
+@app.route('/test', methods=['GET']):
+def test():
+    return render_template('test.html')
 
 
 def get_redirect_uri(request):

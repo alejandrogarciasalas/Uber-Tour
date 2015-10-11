@@ -74,7 +74,7 @@
         <button type="button" onclick="action('price')">PRICE ESTIMATES!</button>
         <button type="button" onclick="action('history')">HISTORY!</button>
         <button type="button" onclick="action('me')">ME!</button> -->
-        <form>
+        <form method="POST" action="/request_tour">
           <div class="form-group">
             <label for="initial_location">Initial Location</label>
             <input type="text" class="form-control" id="initial_location" placeholder="Initial Location">
@@ -91,12 +91,11 @@
             <label for="time">Time</label>
             <input type="number" class="form-control" id="time" placeholder="Time">
           </div>
-          <button type="submit" class="btn btn-default">Request a Tour</button>
+        <button class="btn btn-success" type="submit" value="request_tour">Request a Tour</button>
         </form>
-        <button class="btn btn-success" type="button" onclick="action('request_tour')">Request a Tour</button>
+        <!-- <button class="btn btn-success" type="button" onclick="action('request_tour')">Request a Tour</button> -->
     </div>
     </body>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </html>
