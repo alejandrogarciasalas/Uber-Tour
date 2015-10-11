@@ -8,6 +8,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask_sslify import SSLify
 from rauth import OAuth2Service
 import requests
+import yelpprocess
 
 #Forms module
 from wtforms import Form, BooleanField, TextField, PasswordField, validators
@@ -246,7 +247,10 @@ def register():
     form = RequestForm(request.form)
     print request.form
     if request.method == 'POST' and form.validate():
-        return render_template('test.html', form=request.form)
+        user_preferences = {'initial_location': request.form['initial_location'], 'final_location': request.form['final_location'],
+        'cost': request.form['cost'], 'time': request.form['time']}
+        yelpprocess.
+        return render_template('test.html', form=user_preferences)
     return render_template('test.html', form=request.form)
 
 @app.route('/request_tour', methods=['GET'])

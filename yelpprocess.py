@@ -1,10 +1,11 @@
 import rauth
 import time
 
-def main():
+# def main():
 	# user preferences
-	total_cost = 0
-	number_of_rides = 0
+total_cost = 0
+number_of_rides = 0
+
 def attractionSearch(locations=[(39.98,-82.98)],type='attractions'): #locations in the form   [(39.98,-82.98)] type = "attractions"
 	# location will be taken in from somewhere ####################################################FIX
 
@@ -69,4 +70,4 @@ def get_search_parameters(lat,long,term):
 	return params
 
 if __name__=="__main__":
-	main()
+	attractionSearch()
