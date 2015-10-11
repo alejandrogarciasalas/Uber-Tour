@@ -267,9 +267,9 @@ def register():
         return redirect(url_for('test'))
     return render_template('test.html', form=form)
 
-@app.route('/test', methods=['GET']):
-def test():
-    return render_template('test.html')
+# @app.route('/test', methods=['GET']):
+# def test():
+#     return render_template('test.html')
 
 
 def get_redirect_uri(request):
