@@ -5,6 +5,7 @@ What Is This?
 -------------
 The dopest API mashup in the history of the universe
 
+We grab your location, give you the best yelp spots to hit up within a radius, and hire ubers for you to get you where you need to go
 
 How To Use This
 ---------------
