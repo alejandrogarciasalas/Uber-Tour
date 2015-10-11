@@ -23,6 +23,13 @@ def main():
 	time.sleep(1.0)
 
 	## Do other processing
+	print api_calls[0]['businesses']
+	print "######################################"
+	name = []
+	rating = []
+
+	print "######################Attractions#######################"
+	
 
 def get_results(params):
 
