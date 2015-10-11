@@ -5,10 +5,10 @@
   "keywords": ["uber", "python", "flask"],
   "env": {
     "UBER_CLIENT_ID": {
-      "description": "Your Uber API client id"
+      "description": "zZYyVuHzlJSC-eleDRiCsEb5ulvTt_Kc"
     },
     "UBER_CLIENT_SECRET": {
-      "description": "Your Uber API client secret"
+      "description": "9ir5_Wjg8-PD4Yt9XSxF0lKz8RP-7eJJj-mMv7YR"
     }
   }
 }
