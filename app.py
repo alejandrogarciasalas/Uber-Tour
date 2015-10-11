@@ -9,6 +9,7 @@ from flask_sslify import SSLify
 from rauth import OAuth2Service
 import requests
 import yelpprocess
+import determinelocation
 
 #Forms module
 from wtforms import Form, BooleanField, TextField, PasswordField, validators
@@ -247,9 +248,17 @@ def register():
     form = RequestForm(request.form)
     print request.form
     if request.method == 'POST' and form.validate():
-        user_preferences = {'initial_location': request.form['initial_location'], 'final_location': request.form['final_location'],
-        'cost': request.form['cost'], 'time': request.form['time']}
-        return render_template('test.html', form=user_preferences)
+        user_preferences = {'start_location': request.form['initial_location'], 'end_location': request.form['final_location'],
+        'cost': request.form['cost'], 'max_time': request.form['time']}
+
+        attraction_list = yelpprocess.attractionSearch()
+
+        mock_user = {'start_location': {'latitude': 33, 'longitude': -122}, 'end_location': {'latitude': 34, 'longitude': 56},
+        'cost': 35, 'max_time': 500}
+
+        tour_schedule = determinelocation.get_schedule({'user_preferences': mock_user, 'attractions': attraction_list})
+
+        return render_template('test.html', form=tour_schedule)
     return render_template('test.html', form=request.form)
 
 @app.route('/request_tour', methods=['GET'])
@@ -276,7 +285,10 @@ def get_cheapest_product(latitude, longitude):
         return 'There was an error', response.status_code
     else:
         data = json.loads(response.text)
-        return data.sort(key=product_min_price)[0] # cheapest ride
+        return data.items()[0]
+        ######### PROBLEMS ############
+        # min(data.items(), key=lambda x: x['price_details']['minimum'])
+        # data.sort(key=product_min_price)[0] # cheapest ride
 
 def product_min_price(product):
     """Returns the minimum price of the product."""
@@ -285,11 +297,11 @@ def product_min_price(product):
 ######## HAVE TO CALCULATE THE LATITUDE AND LONGITUDE ON A SYSTEM LEVEL !!!!!!!!!!!!!!
 def time_and_price_estimate(start_latitude, start_longitude, end_latitude, end_longitude):
     """Return the total time and price estimates for an Uber trip."""
-    url = config.get('base_uber_url') + 'requests/time'
+    url = config.get('base_uber_url') + 'requests/estimate'
     params = {
-        'product_id' : get_cheapest_product(latitude, longitude),
-        'start_latitude' : latitude,
-        'start_longitude' : longitude,
+        'product_id' : get_cheapest_product(start_latitude, start_longitude),
+        'start_latitude' : start_latitude,
+        'start_longitude' : start_longitude,
         'end_latitude' : end_latitude,
         'end_longitude' : end_longitude
     }
