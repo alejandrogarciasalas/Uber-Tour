@@ -74,22 +74,25 @@
         <button type="button" onclick="action('price')">PRICE ESTIMATES!</button>
         <button type="button" onclick="action('history')">HISTORY!</button>
         <button type="button" onclick="action('me')">ME!</button> -->
-    <form>
-      <label for="basic-url">Your vanity URL</label>
-      <div class="input-group">
-        <span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-      </div>      
-      <div class="input-group">
-        <span class="input-group-addon">$</span>
-        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-        <span class="input-group-addon">.00</span>
-      </div>
-      <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default">-</button>
-        <button type="button" class="btn btn-default">+</button>
-      </div>
-    </form>
+        <form>
+          <div class="form-group">
+            <label for="initial_location">Initial Location</label>
+            <input type="text" class="form-control" id="initial_location" placeholder="Initial Location">
+          </div>
+          <div class="form-group">
+            <label for="final_location">Final Location</label>
+            <input type="text" class="form-control" id="final_location" placeholder="Final Location">
+          </div>
+          <div class="form-group">
+            <label for="cost">Cost</label>
+            <input type="number" class="form-control" id="cost" placeholder="Cost">
+          </div>
+          <div class="form-group">
+            <label for="time">Time</label>
+            <input type="number" class="form-control" id="time" placeholder="Time">
+          </div>
+          <button type="submit" class="btn btn-default">Request a Tour</button>
+        </form>
         <button class="btn btn-success" type="button" onclick="action('request_tour')">Request a Tour</button>
     </div>
     </body>
