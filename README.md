@@ -1,15 +1,9 @@
 YUTour (a Yelp & Uber Tour)
 ==============================
 
-[![TravisCI](https://travis-ci.org/uber/Python-Sample-Application.svg?branch=master)](https://travis-ci.org/uber/Python-Sample-Application)
-[![Coverage Status](https://coveralls.io/repos/uber/Python-Sample-Application/badge.png)](https://coveralls.io/r/uber/Python-Sample-Application)
-
-https://developer.uber.com/
-
 What Is This?
 -------------
-
-This is a simple Python/Flask application intended to provide a working example of Uber's external API. The goal of these endpoints is to be simple, well-documented and to provide a base for developers to develop other applications off of.
+The dopest API mashup in the history of the universe
 
 
 How To Use This
