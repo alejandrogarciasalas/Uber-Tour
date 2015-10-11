@@ -10,12 +10,12 @@
     </head>
     <body>
     <div class="navbar navbar-default" role="navigation">
-        <div class="container"> 
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span>
                 </button>
                 <a target="_blank" href="#" class="navbar-brand">YUTour</a>
             </div>
@@ -77,19 +77,19 @@
         <form method="POST" action="/request_tour">
           <div class="form-group">
             <label for="initial_location">Initial Location</label>
-            <input type="text" class="form-control" id="initial_location" placeholder="Initial Location">
+            <input type="text" class="form-control" name="initial_location" id="initial_location" placeholder="Initial Location">
           </div>
           <div class="form-group">
             <label for="final_location">Final Location</label>
-            <input type="text" class="form-control" id="final_location" placeholder="Final Location">
+            <input type="text" class="form-control" name="final_location" id="final_location" placeholder="Final Location">
           </div>
           <div class="form-group">
             <label for="cost">Cost</label>
-            <input type="number" class="form-control" id="cost" placeholder="Cost">
+            <input type="number" class="form-control" name="cost" id="cost" placeholder="Cost">
           </div>
           <div class="form-group">
             <label for="time">Time</label>
-            <input type="number" class="form-control" id="time" placeholder="Time">
+            <input type="number" class="form-control" name="time" id="time" placeholder="Time">
           </div>
         <button class="btn btn-success" type="submit" value="request_tour">Request a Tour</button>
         </form>

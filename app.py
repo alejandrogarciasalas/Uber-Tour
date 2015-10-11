@@ -21,12 +21,11 @@ sslify = SSLify(app)
 with open('config.json') as f:
     config = json.load(f)
 
-
 def generate_oauth_service():
     """Prepare the OAuth2Service that is used to make requests later."""
     return OAuth2Service(
-        client_id=os.environ.get('UBER_CLIENT_ID'),
-        client_secret=os.environ.get('UBER_CLIENT_SECRET'),
+        client_id="ojyu-HI1o2SNRBVz20siVpeB-PK_cUtk",
+        client_secret="c7Mqhx_6__TI3eHg2eLzMJsJ_fAIpyGumOE_7Rzr",
         name=config.get('name'),
         authorize_url=config.get('authorize_url'),
         access_token_url=config.get('access_token_url'),
@@ -78,8 +77,8 @@ def submit():
     response = app.requests_session.post(
         config.get('access_token_url'),
         auth=(
-            os.environ.get('UBER_CLIENT_ID'),
-            os.environ.get('UBER_CLIENT_SECRET')
+            "ojyu-HI1o2SNRBVz20siVpeB-PK_cUtk",
+            "c7Mqhx_6__TI3eHg2eLzMJsJ_fAIpyGumOE_7Rzr"
         ),
         data=params,
     )
@@ -95,15 +94,12 @@ def submit():
 def demo():
     # """Demo.html is a template that calls the other routes in this example."""
     # return render_template('demo.html', token=session.get('access_token'))
-
     url = config.get('base_uber_url') + 'me'
     response = app.requests_session.get(
         url,
         headers=generate_ride_headers(session.get('access_token')),
     )
 
-
-    
     if response.status_code != 200:
         return 'There was an error', response.status_code
     return render_template(
@@ -257,14 +253,13 @@ class RequestForm(Form):
 @app.route('/request_tour', methods=['GET', 'POST'])
 def register():
     form = RequestForm(request.form)
+    print form.initial_location
     if request.method == 'POST' and form.validate():
-        request.form['']
         initial_location = form.initial_location.data
         final_location = form.final_location.data
         cost = form.cost.data
         time = form.time.data
-        flash('Thanks for requesting a tour')
-        return redirect(url_for('test'))
+        return redirect('/test')
     return render_template('test.html', form=form)
 
 # @app.route('/test', methods=['GET']):
