@@ -243,6 +243,53 @@ def request_tour():
         # endpoint='me',
         # data=response.text,
     )
+######## HAVE TO CALCULATE THE LATITUDE AND LONGITUDE ON A SYSTEM LEVEL !!!!!!!!!!!!!!
+def get_cheapest_product(latitude, longitude):
+    me():
+    """Returns the cheapest product ouf of available products for a latitude and longitude."""
+    url = config.get('base_uber_url') + 'products'
+    params = {
+        'latitude': latitude,
+        'longitude': longitude,
+    }
+    response = app.requests_session.get(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        params=params,
+    )
+
+    if response.status_code != 200:
+        return 'There was an error', response.status_code
+    else:
+        data = json.loads(response.text)
+        return data.sort(key=product_min_price)[0] # cheapest ride
+
+def product_min_price(product):
+    """Returns the minimum price of the product."""
+    return product.price_details.minimum
+
+######## HAVE TO CALCULATE THE LATITUDE AND LONGITUDE ON A SYSTEM LEVEL !!!!!!!!!!!!!!
+def time_and_price_estimate(start_latitude, start_longitude, end_latitude, end_longitude):
+    """Return the total time and price estimates for an Uber trip."""
+    url = config.get('base_uber_url') + 'requests/time'
+    params = {
+        'product_id' : get_cheapest_product(latitude, longitude),
+        'start_latitude' : latitude,
+        'start_longitude' : longitude,
+        'end_latitude' : end_latitude,
+        'end_longitude' : end_longitude
+    }
+    response = app.requests_session.get(
+        url,
+        headers=generate_ride_headers(session.get('access_token')),
+        params=params,
+    )
+
+    if response.status_code != 200:
+        return 'There was an error', response.status_code
+    else:
+        data = json.loads(response.text)
+        return  {'time' : data.pickup_estimate + data.trip.duration_estimate, 'price': data.price}
 
 
 def get_redirect_uri(request):
