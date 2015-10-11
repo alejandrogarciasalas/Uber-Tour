@@ -6,11 +6,11 @@ import time
 total_cost = 0
 number_of_rides = 0
 
-def attractionSearch(locations=[(39.98,-82.98)],type='attractions'): #locations in the form   [(39.98,-82.98)] type = "attractions"
+def attractionSearch(user_preferences,type='attractions'): #locations in the form   [(39.98,-82.98)] type = "attractions"
 	# location will be taken in from somewhere ####################################################FIX
 
 	api_calls = []
-
+	locations = (user_preferences['initial_location'], user_preferences['final_location'])
 	for lat, long in locations:
 		# call a search for attractions
 		params = get_search_parameters(lat,long,type)
@@ -31,11 +31,15 @@ def attractionSearch(locations=[(39.98,-82.98)],type='attractions'): #locations 
 	# 	place += [{'type':'restaurants','name':api['name'],'rating':api['rating'],'location':api['location'],'rating_img_url':api['rating_img_url'],'image_url':api['image_url'],'mobile_url':api['mobile_url'],'display_phone':api['display_phone'],'categories':api['categories']}]
 	#
 	return place
+
+	### CALL UBER
+	# get_schedule({'user_preferences' : user_preferences, 'attractions' : place})
 	#restaurant
-def hungry(locations=[(39.98,-82.98)]):
-	return (attractionSearch(locations,'restaurants'))
-def sendToUber(*args): # does stuff Wait TILL WE GEt uber and shit done
-	print "hi"
+
+# def hungry(locations=[(39.98,-82.98)]):
+# 	return (attractionSearch(locations,'restaurants'))
+# def sendToUber(*args): # does stuff Wait TILL WE GEt uber and shit done
+# 	print "hi"
 
 def get_results(params):
 
