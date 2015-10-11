@@ -249,7 +249,6 @@ def register():
     if request.method == 'POST' and form.validate():
         user_preferences = {'initial_location': request.form['initial_location'], 'final_location': request.form['final_location'],
         'cost': request.form['cost'], 'time': request.form['time']}
-        yelpprocess.
         return render_template('test.html', form=user_preferences)
     return render_template('test.html', form=request.form)
 
