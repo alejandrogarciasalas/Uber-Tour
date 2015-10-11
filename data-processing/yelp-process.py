@@ -31,7 +31,8 @@ def attractionSearch(locations=[(39.98,-82.98)],type='attractions'): #locations 
 	#
 	return place
 	#restaurant
-
+def hungry(locations=[(39.98,-82.98)]):
+	return (attractionSearch(locations,'restaurants'))
 def sendToUber(*args): # does stuff Wait TILL WE GEt uber and shit done
 	print "hi"
 
