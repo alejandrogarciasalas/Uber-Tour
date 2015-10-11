@@ -6,28 +6,94 @@
         <script src="util.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="https://bootswatch.com/superhero/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="stylesheets/custom.css">
     </head>
     <body>
-        <div class="bs-component">
-              <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span>{{user_info['first_name']}}</span>
-                      <!-- <span class="glyphicon glyphicon-user"></span> -->
-                      <img class="img-responsive img-circle" src={{user_info["picture"]}}>
-                    </button>
-                    <a class="navbar-brand" href="#">YUTour</a>
-                  </div>
-                </div>
-              </nav>
-        </div>  
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container"> 
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>
+                <a target="_blank" href="#" class="navbar-brand">YUTour</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- <li><a href="#">Home</a></li>            -->
+                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img class="img-responsive img-circle profile-picture" src={{user_info['picture']}}> 
+                            <strong>{{user_info['first_name']}}</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <img class="img-responsive img-circle profile-picture" src={{user_info['picture']}}> 
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>{{user_info['first_name']}} {{user_info['last_name']}}</strong></p>
+                                            <p class="text-left small">{{user_info['email']}}</p>
+                                            <p class="text-left">
+                                                <a href="#" class="btn btn-primary btn-block btn-sm">Settings</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block">Log Out</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
 <!--         <button type="button" onclick="action('products')">PRODUCTS!</button>
         <button type="button" onclick="action('time')">TIME ESTIMATES!</button>
         <button type="button" onclick="action('price')">PRICE ESTIMATES!</button>
         <button type="button" onclick="action('history')">HISTORY!</button>
         <button type="button" onclick="action('me')">ME!</button> -->
+    <form>
+      <label for="basic-url">Your vanity URL</label>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      </div>      
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-addon">.00</span>
+      </div>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default">-</button>
+        <button type="button" class="btn btn-default">+</button>
+      </div>
+    </form>
         <button class="btn btn-success" type="button" onclick="action('request_tour')">Request a Tour</button>
+    </div>
     </body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </html>
