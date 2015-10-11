@@ -253,16 +253,16 @@ class RequestForm(Form):
 @app.route('/request_tour', methods=['GET', 'POST'])
 def register():
     form = RequestForm(request.form)
-    print form.initial_location
+    print request.form
     if request.method == 'POST' and form.validate():
         initial_location = form.initial_location.data
         final_location = form.final_location.data
         cost = form.cost.data
         time = form.time.data
-        return redirect('/test')
-    return render_template('test.html', form=form)
+        return render_template('test.html', form=request.form)
+    return render_template('test.html', form=request.form)
 
-# @app.route('/test', methods=['GET']):
+# @app.route('/test', methods=['GET'])
 # def test():
 #     return render_template('test.html')
 
